@@ -117,9 +117,6 @@ class ArrayStack{
          for (int i = top ;i >= 0; i--){
              System.out.println(stack[i]);
          }
-
-
-
     }
 
 

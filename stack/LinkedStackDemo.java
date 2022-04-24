@@ -66,8 +66,6 @@ LinkedStack{
             node.next = head.next;     //不是空栈的情况
             head.next = node;
 
-
-
     }
 
 
@@ -90,8 +88,6 @@ LinkedStack{
             head.next = null;
             return temp;
         }
-
-
     }
 
 
