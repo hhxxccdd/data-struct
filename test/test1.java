@@ -1,18 +1,29 @@
 package test;
 
-import recursion.Queue8;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class test1 {
     public static void main(String[] args) {
 
-        int[] arr = {1,7,3,5,8,9,2};
-        BubbleSort(arr);
-        SelectSort(arr);
-        InsertSort(arr);
-        ShellSort(arr);
-        QuickSort(arr,0, arr.length-1);
+//        int[] arr = {1,7,3,5,8,9,2};
+//        BubbleSort(arr);
+//        SelectSort(arr);
+//        InsertSort(arr);
+//        ShellSort(arr);
+//        QuickSort(arr,0, arr.length-1);
+
+        int arr[] = {1, 8, 10, 89, 1000,1000,1000,1000, 1234};
+//        int number = binarySearch(arr,0,arr.length-1,1234);
+//        System.out.println(number);
+
+
+        ArrayList<Integer>  resIndex = new ArrayList<>();
+        resIndex = enhanceBinarySearch(arr,0,arr.length-1,1000);
+
+        System.out.println(resIndex);
+
+
     }
 
     public static void BubbleSort(int[] arr) {
@@ -177,5 +188,74 @@ public class test1 {
 
     }
 
+    public static int binarySearch(int[] arr, int left, int right, int findVal) {
+
+        int mid = (left + right) / 2;
+
+        int midVal = arr[mid];
+
+        if (left > right) {
+            return -1;
+        }
+        if (findVal > midVal) {
+            return binarySearch(arr, mid + 1, right, findVal);
+        }
+        if (findVal < midVal) {
+            return binarySearch(arr, left, mid - 1, findVal);
+        } else {
+            return mid;
+        }
+
+    }
+
+    public static ArrayList<Integer> enhanceBinarySearch(int[] arr, int left, int right, int findVal) {
+
+        int mid = (left + right) / 2;
+        int midVal = arr[mid];
+
+        if (left > right) {
+            return new ArrayList<>();
+        }
+        if (findVal > midVal) {
+            return enhanceBinarySearch(arr, mid + 1, right, findVal);
+        }
+        if (findVal < midVal) {
+            return enhanceBinarySearch(arr, left, mid - 1, findVal);
+        } else {
+
+            ArrayList arrayList = new ArrayList();
+
+            int temp = mid - 1;
+
+            while (true) {
+                if (temp < 0 || arr[temp] != findVal) {
+                    break;
+                }
+
+                arrayList.add(temp);
+
+                temp--;
+            }
+
+            arrayList.add(mid);
+
+
+            temp = mid + 1;
+            while (true) {
+
+                if (temp > arr.length - 1 || arr[temp] != findVal) {
+                    break;
+                }
+
+                arrayList.add(temp);
+
+                temp++;
+
+            }
+
+            return arrayList;
+
+        }
+    }
 
 }
